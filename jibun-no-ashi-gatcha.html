@@ -1839,7 +1839,7 @@
 
 				output.value = newText;
 				tweet.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(newText)}`;
-				toot.href = `https://imastodon.net/share?text={encodeURIComponent(newText)}`;
+				toot.href = `https://imastodon.net/share?text=${encodeURIComponent(newText)}`;
 			};
 
 			generate();
