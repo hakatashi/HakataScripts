@@ -1833,13 +1833,13 @@
 				do {
 					text = newText;
 					newText = text + '\n' + tags[Math.floor(Math.random() * tags.length)];
-				} while (newText.length < 115);
+				} while (newText.length < 120);
 
-				newText += '\n\n#自分の足ガチャ https://t.co/zOvM4X6gmB'
+				text += '\n\n#自分の足ガチャ https://t.co/zOvM4X6gmB'
 
-				output.value = newText;
-				tweet.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(newText)}`;
-				toot.href = `https://imastodon.net/share?text=${encodeURIComponent(newText)}`;
+				output.value = text;
+				tweet.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+				toot.href = `https://imastodon.net/share?text=${encodeURIComponent(text)}`;
 			};
 
 			generate();
