@@ -8,7 +8,7 @@ const {channels} = require('./channels.json');
       user: 'UEJTPN6R5',
     }, {
       headers: {
-        Authorization: `Bearer xoxp-4551938157-4551938159-463873755332-0495395fccb3c141f22d1d8a47321979`,
+        Authorization: `Bearer xoxp-**********-**********-************-********************************`,
       },
     });
     console.log(data);
