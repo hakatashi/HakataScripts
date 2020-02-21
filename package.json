@@ -22,13 +22,16 @@
     "japanese": "^1.2.0",
     "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
+    "mysql": "^2.18.1",
     "nightmare": "^3.0.0",
     "nightmare-download-manager": "^0.2.5",
+    "p-queue": "^6.2.1",
     "request": "^2.83.0",
     "sax": "^1.2.4",
     "saxpath": "^0.6.5",
     "scrape-it": "^5.0.5",
     "serve-static": "^1.13.2",
+    "tmp": "^0.1.0",
     "tor-request": "^2.2.0",
     "xml-stream": "^0.4.5"
   }
