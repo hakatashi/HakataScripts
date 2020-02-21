@@ -3,3 +3,8 @@
 !*/
 node_modules
 *.exe
+*.bmp
+*.png
+*.csv
+*.tms
+*.txt
