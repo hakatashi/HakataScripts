@@ -27,6 +27,7 @@ const repos = [
 	'hakatashi/color-of-anime',
 	'hakatashi/archive.hakatashi.com',
 	'hakatashi/HakataArchiver',
+	'hakatashi/esolang-battle',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
