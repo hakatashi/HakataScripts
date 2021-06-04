@@ -28,6 +28,7 @@ const repos = [
 	'hakatashi/archive.hakatashi.com',
 	'hakatashi/HakataArchiver',
 	'hakatashi/esolang-battle',
+	'hakatashi/word.hakatashi.com',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
