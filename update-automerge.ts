@@ -58,7 +58,7 @@ const template = stripIndent`
       runs-on: ubuntu-latest
       steps:
         - name: automerge Snyk
-          uses: "pascalgn/automerge-action@v0.12.0"
+          uses: "pascalgn/automerge-action@v0.14.2"
           env:
             GITHUB_TOKEN: "\${{secrets.USER_GITHUB_TOKEN}}"
             MERGE_FORKS: false
@@ -69,7 +69,7 @@ const template = stripIndent`
       runs-on: ubuntu-latest
       steps:
         - name: automerge Dependabot
-          uses: "pascalgn/automerge-action@v0.12.0"
+          uses: "pascalgn/automerge-action@v0.14.2"
           env:
             GITHUB_TOKEN: "\${{secrets.USER_GITHUB_TOKEN}}"
             MERGE_FORKS: false
