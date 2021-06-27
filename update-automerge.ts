@@ -29,6 +29,7 @@ const repos = [
 	'hakatashi/HakataArchiver',
 	'hakatashi/esolang-battle',
 	'hakatashi/word.hakatashi.com',
+	'hakatashi/technically',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
@@ -53,8 +54,12 @@ const template = stripIndent`
       types:
         - completed
     status: {}
+    pull_request_target:
   jobs:
     automerge-snyk:
+      # https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
+      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+      if: \${{github.event_name != 'pull_request_target'}}
       runs-on: ubuntu-latest
       steps:
         - name: automerge Snyk
@@ -66,6 +71,9 @@ const template = stripIndent`
             MERGE_FILTER_AUTHOR: snyk-bot
             MERGE_LABELS: ''
     automerge-dependabot:
+      # https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
+      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+      if: \${{github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]'}}
       runs-on: ubuntu-latest
       steps:
         - name: automerge Dependabot
@@ -105,6 +113,33 @@ const template = stripIndent`
 			secret_name: 'USER_GITHUB_TOKEN',
 			encrypted_value: encrypted,
 		});
+
+		/*
+		console.log('Getting workflows...');
+		const {data: {workflows}} = await github.actions.listRepoWorkflows({
+			owner,
+			repo,
+		});
+
+		const checks = workflows.map((workflow) => workflow.name).filter((name) => name !== 'automerge');
+		console.log(`Required checks: ${JSON.stringify(checks)}`);
+
+		if (checks.length > 0) {
+			console.log(`Updating branch protection rule...`);
+			const {data: protection} = await github.repos.updateBranchProtection({
+				owner,
+				repo,
+				branch: defaultBranch,
+				required_status_checks: {
+					strict: false,
+					contexts: checks,
+				},
+				enforce_admins: false,
+				required_pull_request_reviews: null,
+				restrictions: null,
+			});
+		}
+		*/
 
 		console.log('Getting commit hash...');
 		const {data: ref} = await github.git.getRef({owner, repo, ref: `heads/${defaultBranch}`})
