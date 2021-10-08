@@ -30,6 +30,7 @@ const repos = [
 	'hakatashi/esolang-battle',
 	'hakatashi/word.hakatashi.com',
 	'hakatashi/technically',
+	'hakatashi/mahjong.hakatashi.com',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
