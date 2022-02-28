@@ -33,6 +33,7 @@ const repos = [
 	'hakatashi/mahjong.hakatashi.com',
 	'hakatashi/atcoder-auto-submitter',
 	'hakatashi/namori_rakugaki_annotation',
+	'hakatashi/hkt.sh',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
