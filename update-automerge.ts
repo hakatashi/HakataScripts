@@ -34,6 +34,7 @@ const repos = [
 	'hakatashi/atcoder-auto-submitter',
 	'hakatashi/namori_rakugaki_annotation',
 	'hakatashi/hkt.sh',
+	'hakatashi/decathlon',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
