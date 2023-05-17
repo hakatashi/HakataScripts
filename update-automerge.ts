@@ -35,6 +35,7 @@ const repos = [
 	'hakatashi/namori_rakugaki_annotation',
 	'hakatashi/hkt.sh',
 	'hakatashi/decathlon',
+	'hakatashi/eslint-config',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
