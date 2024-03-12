@@ -35,6 +35,7 @@
     "request": "^2.83.0",
     "sax": "^1.2.4",
     "saxpath": "^0.6.5",
+    "say": "github:MatchaChoco010/say.js#make-3rd-party-voice-available",
     "scrape-it": "^5.0.5",
     "serve-static": "^1.13.2",
     "tmp": "^0.1.0",
@@ -43,5 +44,8 @@
     "tweetsodium": "^0.0.5",
     "typescript": "^4.2.3",
     "xml-stream": "^0.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.6"
   }
 }
