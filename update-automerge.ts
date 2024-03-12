@@ -36,6 +36,8 @@ const repos = [
 	'hakatashi/hkt.sh',
 	'hakatashi/decathlon',
 	'hakatashi/eslint-config',
+	'hakatashi/sugoi-converter',
+	'hakatashi/Genshin-de-GO',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
