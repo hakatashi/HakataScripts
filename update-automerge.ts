@@ -38,6 +38,7 @@ const repos = [
 	'hakatashi/eslint-config',
 	'hakatashi/sugoi-converter',
 	'hakatashi/Genshin-de-GO',
+	'hakatashi/rinna_slackbot',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
