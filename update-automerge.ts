@@ -39,6 +39,7 @@ const repos = [
 	'hakatashi/sugoi-converter',
 	'hakatashi/Genshin-de-GO',
 	'hakatashi/rinna_slackbot',
+	'hakatashi/it-quiz',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
