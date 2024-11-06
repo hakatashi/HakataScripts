@@ -40,6 +40,7 @@ const repos = [
 	'hakatashi/Genshin-de-GO',
 	'hakatashi/rinna_slackbot',
 	'hakatashi/it-quiz',
+	'hakatashi/solid-start-firebase-template',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
