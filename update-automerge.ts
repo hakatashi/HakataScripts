@@ -21,7 +21,6 @@ const repos = [
 	'hakatashi/slackbot-anime-thumber',
 	'hakatashi/pentest',
 	'hakatashi/api.hakatashi.com',
-	'hakatashi/hakatabot-heroku',
 	'hakatashi/hakatabot',
 	'hakatashi/hakatabot-firebase-functions',
 	'hakatashi/color-of-anime',
@@ -31,7 +30,6 @@ const repos = [
 	'hakatashi/word.hakatashi.com',
 	'hakatashi/technically',
 	'hakatashi/mahjong.hakatashi.com',
-	'hakatashi/atcoder-auto-submitter',
 	'hakatashi/namori_rakugaki_annotation',
 	'hakatashi/hkt.sh',
 	'hakatashi/decathlon',
@@ -45,67 +43,28 @@ const repos = [
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
 
-const template = stripIndent`
-  name: automerge
-  on:
-    pull_request:
-      types:
-        - labeled
-        - unlabeled
-        - synchronize
-        - opened
-        - edited
-        - ready_for_review
-        - reopened
-        - unlocked
-    pull_request_review:
-      types:
-        - submitted
-    check_suite:
-      types:
-        - completed
-    status: {}
-    pull_request_target:
-    workflow_run:
-      workflows: [Build, Test, Run tests]
-      types: [completed]
-      branches-ignore:
-        - master
-        - main
-  jobs:
-    automerge-snyk:
-      # https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
-      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
-      if: \${{github.event_name != 'pull_request_target' && startsWith(github.event.pull_request.title, '[Snyk]')}}
-      runs-on: ubuntu-latest
-      steps:
-        - name: automerge Snyk
-          uses: "pascalgn/automerge-action@v0.15.6"
-          env:
-            GITHUB_TOKEN: "\${{secrets.USER_GITHUB_TOKEN}}"
-            MERGE_FORKS: false
-            MERGE_DELETE_BRANCH: true
-            MERGE_FILTER_AUTHOR: hakatashi
-            MERGE_LABELS: ''
-            MERGE_RETRY_SLEEP: 30000
-            MERGE_RETRIES: 10
-    automerge-dependabot:
-      # https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
-      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
-      if: \${{(github.event_name == 'workflow_run' || github.event_name == 'pull_request_target') && github.actor == 'dependabot[bot]'}}
-      runs-on: ubuntu-latest
-      steps:
-        - name: automerge Dependabot
-          uses: "pascalgn/automerge-action@v0.15.6"
-          env:
-            GITHUB_TOKEN: "\${{secrets.USER_GITHUB_TOKEN}}"
-            MERGE_FORKS: false
-            MERGE_DELETE_BRANCH: true
-            MERGE_FILTER_AUTHOR: ''
-            MERGE_LABELS: dependencies
-            MERGE_RETRY_SLEEP: 30000
-            MERGE_RETRIES: 10
-`;
+const getTemplate = (repo: string) => {
+	return stripIndent`
+		name: automerge
+		on: pull_request_target
+
+		jobs:
+		  dependabot:
+		    runs-on: ubuntu-latest
+		    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == '${repo}'
+		    steps:
+		      - name: Dependabot metadata
+		        id: metadata
+		        uses: dependabot/fetch-metadata@v2
+		        with:
+		          github-token: "\${{ secrets.USER_GITHUB_TOKEN }}"
+		      - name: Enable auto-merge for Dependabot PRs
+		        run: gh pr merge --auto --merge "$PR_URL"
+		        env:
+		          PR_URL: \${{ github.event.pull_request.html_url }}
+		          GH_TOKEN: \${{ secrets.USER_GITHUB_TOKEN }}
+	`;
+};
 
 (async () => {
 	const date = new Date().toISOString();
@@ -162,6 +121,14 @@ const template = stripIndent`
 		}
 		*/
 
+		console.log('Updating repository to enable allow_auto_merge...');
+		const {data: repoUpdate} = await github.repos.update({
+			owner,
+			repo,
+			allow_auto_merge: true,
+		});
+		console.log(`done. (allow_auto_merge = ${repoUpdate.allow_auto_merge})`);
+
 		console.log('Getting commit hash...');
 		const {data: ref} = await github.git.getRef({owner, repo, ref: `heads/${defaultBranch}`})
 		const commitHash = ref.object.sha;
@@ -179,7 +146,7 @@ const template = stripIndent`
 					path: '.github/workflows/automerge.yml',
 					mode: '100644',
 					type: 'blob',
-					content: template,
+					content: getTemplate(repoString),
 				},
 			],
 		});
