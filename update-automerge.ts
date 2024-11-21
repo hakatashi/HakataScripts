@@ -39,6 +39,7 @@ const repos = [
 	'hakatashi/rinna_slackbot',
 	'hakatashi/it-quiz',
 	'hakatashi/solid-start-firebase-template',
+	'hakatashi/activitypub-firebase',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
 ];
