@@ -40,8 +40,10 @@ const repos = [
 	'hakatashi/it-quiz',
 	'hakatashi/solid-start-firebase-template',
 	'hakatashi/activitypub-firebase',
+	'hakatashi/it-quiz-shorts',
 	'tsg-ut/achievement-viewer',
 	'tsg-ut/ctfd-theme-tsgctf',
+	'tsg-ut/arc-codegolf',
 ];
 
 const getTemplate = (repo: string) => {
